@@ -1,7 +1,7 @@
 Talos Digital - docker scripts
 
 
-
+Make sure your iptables looks like this
 ```
 # cat /etc/sysconfig/iptables
 *nat
@@ -36,3 +36,16 @@ COMMIT
 -A FORWARD -j REJECT --reject-with icmp-host-prohibited
 COMMIT
 ```
+
+Make sure your docker daemon on slaves machines look like this
+```
+# /etc/sysconfig/docker
+#
+# Other arguments to pass to the docker daemon process
+# These will be parsed by the sysv initscript and appended
+# to the arguments list passed to docker -d
+
+other_args="-H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock --ip-forward=true --iptables=true"
+DOCKER_CERT_PATH=/etc/docker
+```
+
