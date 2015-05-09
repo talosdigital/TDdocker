@@ -5,7 +5,7 @@ echo "- - - "
 echo -n "Enter name of container (CID) e.g. jenkins001: "
 read CID
 
-COMMAND="docker start ${CID}"
+COMMAND="docker start --restart=always --restart=on-failure:10 ${CID}"
 echo $COMMAND
 echo $($COMMAND)
 
