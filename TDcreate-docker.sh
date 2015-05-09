@@ -15,6 +15,6 @@ mkdir -p /docker/$CID
 chmod 777 -R /docker/$CID
 chown 1000 /docker/$CID
 
-COMMAND="docker create --privileged=true --name $CID -v /docker/$CID:$FOLDER_DOCKER $PORTS -t $IMAGE"
+COMMAND="docker create --restart=\"always\" --privileged=true --name $CID -v /docker/$CID:$FOLDER_DOCKER $PORTS -t $IMAGE"
 echo $COMMAND
 echo $($COMMAND)
